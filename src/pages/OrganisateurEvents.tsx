@@ -1,5 +1,5 @@
-
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { mockEvents, Event } from '@/data/mockData';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,6 +8,7 @@ import { Calendar, Users, QrCode } from 'lucide-react';
 
 const OrganisateurEvents = () => {
   const [events] = useState<Event[]>(mockEvents);
+  const navigate = useNavigate();
 
   const formatDate = (date: string) => {
     return new Date(date).toLocaleDateString('fr-FR', {
@@ -33,7 +34,10 @@ const OrganisateurEvents = () => {
       </div>
 
       <div className="mb-6">
-        <Button className="bg-ticket-gradient hover:opacity-90">
+        <Button 
+          className="bg-ticket-gradient hover:opacity-90"
+          onClick={() => navigate('/organisateur/create-event')}
+        >
           <Calendar className="mr-2" size={16} />
           Créer un nouvel événement
         </Button>

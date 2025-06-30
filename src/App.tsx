@@ -9,9 +9,12 @@ import Layout from "@/components/Layout";
 import LoginForm from "@/components/LoginForm";
 import Dashboard from "@/pages/Dashboard";
 import OrganisateurEvents from "@/pages/OrganisateurEvents";
+import OrganisateurScanner from "@/pages/OrganisateurScanner";
+import CreateEvent from "@/pages/CreateEvent";
 import ParticipantEvents from "@/pages/ParticipantEvents";
 import ParticipantTickets from "@/pages/ParticipantTickets";
 import AdminUsers from "@/pages/AdminUsers";
+import AdminEvents from "@/pages/AdminEvents";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -50,6 +53,18 @@ const AppRoutes = () => {
         </ProtectedRoute>
       } />
       
+      <Route path="/organisateur/create-event" element={
+        <ProtectedRoute allowedRoles={['organisateur']}>
+          <CreateEvent />
+        </ProtectedRoute>
+      } />
+      
+      <Route path="/organisateur/scanner" element={
+        <ProtectedRoute allowedRoles={['organisateur']}>
+          <OrganisateurScanner />
+        </ProtectedRoute>
+      } />
+      
       <Route path="/participant/events" element={
         <ProtectedRoute allowedRoles={['participant']}>
           <ParticipantEvents />
@@ -65,6 +80,12 @@ const AppRoutes = () => {
       <Route path="/admin/users" element={
         <ProtectedRoute allowedRoles={['administrateur']}>
           <AdminUsers />
+        </ProtectedRoute>
+      } />
+      
+      <Route path="/admin/events" element={
+        <ProtectedRoute allowedRoles={['administrateur']}>
+          <AdminEvents />
         </ProtectedRoute>
       } />
       
